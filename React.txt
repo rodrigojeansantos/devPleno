@@ -1,0 +1,54 @@
+react: estrutura da tela em memoria
+react-dom: pega estrutura em memoria e converte para o navegador
+real. Vai manipular o html que ta no broswer
+
+Obs: Toda vez que criar jsx importamos o React, ele é 
+convertido para React.createElement
+
+Instalando para criar projetos
+npm i -g create-react-app
+
+create-react-app counter
+
+Script do Package
+start rodar ele
+build Gerar build final
+eject remove o React scripts, devolve a confiração
+de projeto. Só quando preciso fazer algo do webpack. Se ejetar
+não consigo voltar
+
+COMPONENTES: Sempre com letra Maiuscula. 
+Todo Component sempre retorna um render.
+Ele sempre renderiza algo, nem que seja null.
+Obs: Não posso retornar 2 componentes no mesmo render()
+Mas se usar um wrapper posso.
+
+COMPONENTE REAGIR A ALTERAÇÕES
+Existem duas maneiras de fazer isso
+1- Trocando as props
+2- Trocando os estados internos 
+
+PEGAR VALOR DE INPUT, TEXTAREA..
+existem 2 maneiras, 
+1) Confiar no dom real, que esta na tela( Conhecido como
+versão não contralada do componente)
+2) Colocar o valor do input dentro do estado interno (Versão
+controlado)
+
+THIS DENTRO DE ARROW FUNCTIONS
+O this é do pai dele na arrow function
+O this referencia a instancia do componente
+Ou uso o constructor no componente
+
+componentDidMount: Saiu do dom virtual e foi montado de fato na tela
+
+Pure Functions: São algumas das vantagens de trabalhar com
+Function State component. Qualquer melhoria do time do react
+fizer ja ganhamos as melhorias. Não podemos usar em todos os
+componentes, quando gerencia o estado interno não rola.
+
+TESTES
+Diferença entre shallow e render.
+shallow: Monta o componente de uma forma raza. Ele não
+renderiza os filhos. Deixa os testes mais rapidos pq não
+renderiza a cadeia toda.

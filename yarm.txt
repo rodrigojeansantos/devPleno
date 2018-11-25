@@ -1,0 +1,6 @@
+yarn (equivalente ao npm install)
+
+yarn add nomeModulo (equivalente ao npm install --save nomeModulo)
+
+yarn add --dev nomeModulo (equivalente ao npm install --save-dev nomeModulo)
+
