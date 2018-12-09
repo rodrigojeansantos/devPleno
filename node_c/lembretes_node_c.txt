@@ -1,0 +1,56 @@
+30/11
+			************ EVENT LOOP ************
+Node recebe a requisição e envia para o event loop. Quando termina
+ele avisa a thread e avisa quando termina. Coisas IO(input and ouput) ele não bloqueia.
+Coisas sincronas ele bloqueia essa requisição
+
+			************ EXPRESS ************
+Framework de rotas
+Declaro verbo e rota e a resposta que eu quero pra ela
+
+			************ Package-lock ************
+Arquivos de dependencias novas. ^ tenho que tirar esse cara. Deixando ele pode pegar uma
+versão de major.
+
+			************ REST ************
+Conjunto de regras para implementar os verbos
+
+			************ Mongo ************
+nLab -> Subir o mongo até 500mg de graça
+Replica set ou sharded
+
+db.movies.find({_id: ObjectId("5c0283c52c5be6ecefdf8e78")}) Procurar por Id
+db.movies.distinct('title')
+db.movies.findOne() Retornar o primeiro registro
+db.movies.find({title: 'O Stars Wars 1'})  procura esse registro
+db.movies.find({}, {_id: false}) retorno tudo menos o _id
+db.movies.find({}, {_id: false, title: true}) retornar só o title sem  id
+db.movies.find({ releaseDate: { $gte: new Date(2019,0,1)}}) - maior que a data
+
+Like
+db.movies.find({ title: /^s/i }, {_id: 0, title: 1}) Usa expressão regular
+db.movies.find({ title: /[0-9]$/i }, {_id: 0, title: 1}) filmes com numero OBS: id 0 é false e title 1 é true
+
+Update
+set altera a propriedade que eu quero no Mongo
+ db.movies.update({title: /Star/i}, {$set: { studio: 'Disney' }}) Fazer update na propriedade
+
+upsert - Se não existir inseri
+ db.movies.update({title: 'Capitã Marvel'}, { $set: {releaseDate: new Date() }}, {upsert: true})
+
+Agregate: Cada comando para o proximo aplica a regra no de cima
+agregate[
+{}, -> FIltra em todos os registros
+{}, -> Agora aplica no registros ja filtrados
+{} -> Agora aplica novamente nos que voltaram
+]
+
+			************ Testes ************
+--exit no package faz ele sair de testes assinscronos, problema de uma versaõ nova do mocha
+
+			************ Deploy ************
+Não usar porta 80. Uso Nginx com proxy reverso na porta 80.
+
+			************ Redis ************
+Chave e valor e NoSql. Conceito de TTL, time to live. Depois e 1 hora a chave se apaga sozinha.
+npm i --save redis
