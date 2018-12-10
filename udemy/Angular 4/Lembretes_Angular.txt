@@ -1,0 +1,76 @@
+---------------------Angular Cli---------------------
+npm i -g @angular/cli
+ng -v; tsc -v
+
+tsc -> Faz a compilação para Es5
+
+tsconfig.json -> Arquivo de configuração para
+o node. Para criar tsc -init
+Podemos escolher onde vamos deixar o transpile do 
+arquivo
+
+tsw -w Automaticamente assiste as alterações
+e cria um novo arquivo dentro da pasta que criamos
+
+Inferencia de Tipo: O Node pega o tipo da variavel
+quando vc cria. Mas tem que ter cuidado para não 
+alterar
+
+Anguar implementa Interface Generic
+
+Para usar um alias só usar as oNomeQueEuQuero
+
+----Novo Projeto---
+ng new app1
+
+Subir projeto
+ng serve ou ng server
+ng generate component painel ou ng g c painel
+Sem criar testes ng g c painel --spec=false
+-----------------------------------------------------
+
+
+----------Estrutura de Arquivos Angular -------------
+polyfills: Esturutra para brownser antigo
+src->assets: arquivos estaticos da aplicação como:
+images, css, js
+
+
+->Quinta 10:00 -> Alameda  dos imbancara 518.
+
+-----------------------------------------------------
+Template é View
+
+----------------------NG Template--------------------
+Funciona sem um componente no front
+-----------------------------------------------------
+
+----------------------Build-------------------------
+ng build --dev  build para desenvolvimento
+ng build --env=prod
+-----------------------------------------------------
+
+----------------------Rotes-------------------------
+forRoot Aplicação Global
+forChild rotas internas de componentes
+-----------------------------------------------------
+
+
+----------------------RxJs-------------------------
+	***IMPORTANTE***
+Observables não são do Angular e sim do RxJs
+
+switchMa/ debouceTime: Dispara apenas uma unica
+requisição completa. Tem um tempo para fazer uma
+fila e montrar a string para enviar para o backend
+-----------------------------------------------------
+
+----------------------Observables--------------------
+São parecidos com promisses.
+Precisamos de um observador e um observavel
+-----------------------------------------------------
+
+----------------------Memory Leak--------------------
+São os observable que não são removidos na alteração
+de rotas. Preciso implementar uma logica para isso.
+-----------------------------------------------------
