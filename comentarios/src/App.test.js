@@ -4,8 +4,10 @@ import App from './App'
 import { shallow } from 'enzyme'
 import Comments from './Comments'
 import NewComment from './NewComment'
+import { EventEmitter } from 'events'
 
 describe('<App />', () => {
+  
   it('renders without crashing', () => {
     const database = { ref: jest.fn() }
     database.ref.mockReturnValue({
@@ -39,6 +41,24 @@ describe('<App />', () => {
     expect(child).toBeCalledWith('comments')
     expect(update).toBeCalledWith({ 'comments/1': { comment: 'new comment'} })
     // console.log(update.mock.calls)
+  });
+
+  it('renders comments from firebase', () => {
+    const database = { ref: jest.fn() }
+
+    const eventEmmiter = new EventEmitter()
+
+    database.ref.mockReturnValue(eventEmmiter)
+    const wrapper = shallow(<App database={database} />)
+
+    const comments = { a: { comment: 'comment 1 '}, b: { comment: 'comment 2 '}}
+    const val = jest.fn()
+    val.mockReturnValue(comments)
+    eventEmmiter.emit('value', { val: jest.fn() })
+
+    wrapper.update()
+
+    expect(wrapper.state().isLoading).toBeFalsy()    
   });
 
 })

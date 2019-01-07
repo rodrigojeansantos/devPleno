@@ -52,3 +52,16 @@ Diferença entre shallow e render.
 shallow: Monta o componente de uma forma raza. Ele não
 renderiza os filhos. Deixa os testes mais rapidos pq não
 renderiza a cadeia toda.
+
+FIREBASE
+Instalar ele
+firebase login e autenticar com email
+yarn build
+firebase init no diretorio do projeto
+Escolher hosting e apertar espaço
+Escolher o projeto
+E não deixar publico, colocar build versão melhor
+Depois marcar SPA e não sobreescrever, ou seja, Sim e não
+firebase deploy, dai ele ja gera no site.
+
+FIREBASE Autenticação

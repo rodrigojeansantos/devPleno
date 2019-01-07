@@ -1,0 +1,17 @@
+******************************** React Native ********************************
+
+			*********** Entendendo ***********
+Ja vem com alguns componentes por padrão, texto, view.
+Termo "Look and Feel" gera codigo que vc sente como ele nativo.
+
+			*********** Expo ***********
+É um player para IOS e Android,  ele traduz e emula no player. Não precisa
+gerar os arquivos nativos no celular só uma url basta.
+Cria uma aplicação rapido, não instalada nada para desenvolver, nada de 
+android estudio. Nada.... É o mais usado
+
+			*********** GENYMOTION ***********
+Um emulador gratuito para uso pessoal. O emulador mais rapido.
+Utiliza no Mac quanto Windons
+https://www.genymotion.com/fun-zone/
+******************************************************************************
