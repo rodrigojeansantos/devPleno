@@ -9,6 +9,52 @@ import Sobre from './Sobre'
 import Produtos from './Produtos'
 
 class App extends Component {
+  constructor(props){
+    super(props)
+    this.loadCategorias = this.loadCategorias.bind(this)
+    this.createCategoria = this.createCategoria.bind(this)
+    this.removeCategoria = this.removeCategoria.bind(this)
+    this.editCategoria = this.editCategoria.bind(this)
+    this.createProduto = this.createProduto.bind(this)
+    this.loadProdutos = this.loadProdutos.bind(this)
+    this.loadCategoria = this.loadCategoria.bind(this)
+    this.state = { categoria: null, categorias: [], produtos: [] }
+  }
+  removeCategoria(categoria){
+    this.props.api.deleteCategoria(categoria.id)
+      .then((res) => { this.loadCategorias() })
+  }
+  loadCategorias(){
+    this.props.api.loadCategorias()
+      .then(res => {        
+        this.setState({ categorias: res.data })
+      })
+  }
+
+  createCategoria(categoria){
+    this.props.api.createCategoria(categoria)
+    .then((res) => this.loadCategorias())
+  }
+
+  editCategoria(categoria){
+    this.props.api.editCategoria(categoria)
+    .then((res) => this.loadCategorias())
+  }
+  
+  createProduto(produto){
+    return this.props.api.createProduto(produto)
+  }
+
+  loadProdutos(categoria){
+    this.props.api.loadProdutos(categoria)
+      .then((res) => this.setState({ produtos: res.data }))
+  }
+
+  loadCategoria(categoria){
+    this.props.api.readCategoria(categoria)
+      .then((res) => {this.setState({ categoria: res.data })})
+  }
+
   render() {
     return (
       <Router>
@@ -32,8 +78,27 @@ class App extends Component {
 
           <div className="container mt-2">
             <Route exact path ='/' component={Home} />
-            <Route path ='/produtos' component={Produtos} />
             <Route exact path ='/sobre' component={Sobre} />
+            <Route path ='/produtos' render=
+            { (props) => 
+              {
+                return (
+                  <Produtos {...props} 
+                    loadCategorias={this.loadCategorias} 
+                    createCategoria={this.createCategoria}
+                    removeCategoria={this.removeCategoria}
+                    categorias={this.state.categorias}
+                    editCategoria={this.editCategoria}
+                    createProduto={this.createProduto}
+                    loadProdutos={this.loadProdutos}
+                    loadCategoria={this.loadCategoria}
+                    produtos={this.state.produtos}
+                    categoria={this.state.categoria}
+                  />
+                )
+              }
+            } 
+            />
           </div>
 
         </div>

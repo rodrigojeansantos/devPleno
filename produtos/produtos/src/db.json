@@ -1,12 +1,87 @@
 {
   "produtos": [
-    {"id": 1, "produto": "Sabão Liquido", "categoria": 1},
-    {"id": 2, "produto": "Sabão em Pó", "categoria": 1},
-    {"id": 3, "produto": "Bolacha", "categoria": 2}
+    {
+      "id": 1,
+      "produto": "Sabão Liquido",
+      "categoria": 1
+    },
+    {
+      "id": 2,
+      "produto": "Sabão em Pó",
+      "categoria": 1
+    },
+    {
+      "id": 3,
+      "produto": "Bolacha",
+      "categoria": 2
+    },
+    {
+      "produto": "Novo produto de limpeza",
+      "categoria": "1",
+      "id": 4
+    },
+    {
+      "produto": "Milho",
+      "categoria": "2",
+      "id": 5
+    },
+    {
+      "produto": "Camiseta",
+      "categoria": "3",
+      "id": 6
+    },
+    {
+      "produto": "Calça",
+      "categoria": "3",
+      "id": 7
+    },
+    {
+      "produto": "Item A",
+      "categoria": "9",
+      "id": 8
+    },
+    {
+      "produto": "Item B",
+      "categoria": "9",
+      "id": 9
+    },
+    {
+      "produto": "Item C",
+      "categoria": "9",
+      "id": 10
+    },
+    {
+      "produto": "Item D",
+      "categoria": "1",
+      "id": 11
+    },
+    {
+      "produto": "Item F",
+      "categoria": "9",
+      "id": 12
+    },
+    {
+      "produto": "Outro Item",
+      "categoria": "3",
+      "id": 13
+    }
   ],
   "categorias": [
-    {"id":1 , "categoria": "Limpeza"},
-    {"id":2 , "categoria": "Alimentos"},
-    {"id":3 , "categoria": "Utilidades"}
+    {
+      "id": 1,
+      "categoria": "Limpeza"
+    },
+    {
+      "id": 2,
+      "categoria": "Alimentos"
+    },
+    {
+      "id": 3,
+      "categoria": "Utilidades"
+    },
+    {
+      "id": 9,
+      "categoria": "Deleta"
+    }
   ]
 }
