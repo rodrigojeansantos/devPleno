@@ -6,7 +6,7 @@ const numCpus = require('os').cpus().length
 
 //pm2, forever.
 
-if (cluster.isMaster){
+/*if (cluster.isMaster){
   for(let i=0; i< numCpus; i++){
     let worker = cluster.fork()
 
@@ -19,4 +19,8 @@ if (cluster.isMaster){
   app.listen(4000, () => {
     console.log('server is up')
   })
-}
+}*/
+
+app.listen(4000, () => {
+  console.log('server is up')
+})
