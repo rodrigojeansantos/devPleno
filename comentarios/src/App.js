@@ -5,6 +5,7 @@ import NewComment from './NewComment'
 import Login from './Login'
 import SignUp from './SignUp'
 import User from './User'
+import 'bootstrap-css-only'
 
 class App extends Component {
   state = {    
@@ -113,7 +114,7 @@ changeScreen = (screen) => {
 
   render() {
     return (
-      <div>
+      <div className="container mt-3">
         { /*NewComment*/ }
           {/*this.state.newComment  USADO PARA VALIDAR*/}
           { /* JSON.stringify(this.state)  OUTRA MANEIRA DE VALIDAR MUITO BOM, OLHO O STATE TODO*/}
