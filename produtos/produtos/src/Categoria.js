@@ -10,7 +10,6 @@ class Categoria extends Component {
     this.setState({id})
     this.props.loadProdutos(id)
     this.props.loadCategoria(id)
-
   }
   componentDidMount(){
     const id = this.props.match.params.catId
@@ -30,7 +29,7 @@ class Categoria extends Component {
   render() {    
     return(
       <div>
-        <h1>{this.props.categoria.categoria} {/*this.props.match.params.catId*/}</h1>
+        <h1>{ this.props.categoria && this.props.categoria.categoria} {/*this.props.match.params.catId*/}</h1>
         <p></p>
         {this.props.produtos.map(this.renderProduto)}
       </div>

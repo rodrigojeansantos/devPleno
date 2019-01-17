@@ -59,7 +59,6 @@ class Produtos extends Component {
       if(key.keyCode === 13){
         this.props.createCategoria({ categoria: this.refs.categoria.value })
         this.refs.categoria.value = ''
-
       }
   }
 
@@ -108,7 +107,7 @@ class Produtos extends Component {
             }} />
 
           <Route path={match.url+'/categoria/:catId'} 
-            render={(props) => { 
+            render={ (props) => { 
                 return <Categoria {...props} 
                           loadProdutos={this.props.loadProdutos}
                           loadCategoria={this.props.loadCategoria}
