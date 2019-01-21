@@ -3,6 +3,8 @@ import { Route, Link } from 'react-router-dom'
 import ProdutosHome from './ProdutosHome'
 import ProdutosNovo from './ProdutosNovo'
 import Categoria from './Categoria'
+import ProdutosEditar from './ProdutosEditar'
+
 
 class Produtos extends Component {
   constructor(props){
@@ -106,6 +108,16 @@ class Produtos extends Component {
                     />
             }} />
 
+          <Route path={`${match.url}/editar/:id`} 
+            render={(props) => {
+              return <ProdutosEditar {...props} 
+                        categorias={categorias} 
+                        readProduto={this.props.readProduto}
+                        editProduto={this.props.editProduto}
+                      />
+            }}
+          />
+
           <Route path={match.url+'/categoria/:catId'} 
             render={ (props) => { 
                 return <Categoria {...props} 
@@ -113,6 +125,8 @@ class Produtos extends Component {
                           loadCategoria={this.props.loadCategoria}
                           produtos={this.props.produtos}
                           categoria={this.props.categoria}
+                          removeProduto={this.props.removeProduto}
+                          
                         /> 
               }}
           />
