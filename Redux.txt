@@ -1,0 +1,24 @@
+------------------------Redux---------------------------
+
+		******STORE******
+Store: Onde fica o estado da aplicação. É o unico ponto
+de verdade, ou seja, reflete o estado que esta
+aqui dentro. Single Source of Truth(Store)
+
+		-----Como Alterar o Store-----
+Action -> É recebido por um Reducer, o Reducer é
+responsavel por alterar o Store. Na verdade ele 
+sobreescreve a Store não altera
+
+		-----Detalhes do Reducer-----
+O Reducer recebe o state e a action, retorna um 
+new state. O Reducer é uma função pura. Para teste
+eu penso em estado.
+
+		-----Criação do Reducer-----
+Quando criamos um store ele espera tambem um
+reducer
+
+		-----Dispatch-----
+Dispara ações
+--------------------------------------------------------
