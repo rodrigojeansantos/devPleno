@@ -1,5 +1,9 @@
 ------------------------Redux---------------------------
 
+		******Apoio******
+yarn redux-logger 
+instalar redux DevTools
+
 		******STORE******
 Store: Onde fica o estado da aplicação. É o unico ponto
 de verdade, ou seja, reflete o estado que esta
@@ -21,4 +25,7 @@ reducer
 
 		-----Dispatch-----
 Dispara ações
+
+		-----Action Creator-----
+Criador de ações
 --------------------------------------------------------
