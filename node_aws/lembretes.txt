@@ -1,0 +1,19 @@
+******************************** Nano Services ********************************
+Toda função lambda precisa de acesso ao cloud watch logs. Ela vai logar
+usando isso. Logo preciso de uma IAM.
+
+			*********** Fass/NanosServiços ***********
+OBS: 1000 funções lambdas executando ao mesmo tempo na aws
+
+				*********** Vantagens ***********
+*Isolamento de responsabilidades
+*Alta disponibilidade/Auto-escalabilidade
+*Deploys frequentes
+*Flexibilidade para escrever na linguagem que melhor resolve o problema
+*Paga somente pelo que consome
+
+				*********** DesVantagens ***********
+*Dificil debugar
+*Dificil testar
+*Stateless
+*Tempo de execução limitado
