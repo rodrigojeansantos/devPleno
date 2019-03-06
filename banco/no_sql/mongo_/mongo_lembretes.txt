@@ -1,0 +1,20 @@
+********************************* Mongo Estudos **********************************
+
+			*********** Entendendo ***********
+
+OBS: Bson formato binario do mongo.
+lookup: Fazer junção, mas não são bem vindas.
+Referencia: Deleta a chave estrangeira e seus dependentes ficam orfaos.
+
+****** Banco Relacional ******  MongoDB *********
+Banco de dados		----> Banco de dados
+Tabela, visão 		----> Coleção
+Linha	       		----> Documentos (Json, Bson)
+Coluna (Esquema Rigido) ----> Campo (Esquema Flexivel
+Indice			----> Indice
+Junção			----> Documento Embutido
+Chave Estrangeira	----> Referencia
+Partição		----> Sharding
+************************************************
+Dentro de um documentos temos atributos que esses atributos
+podem ser um array que contem valores.
