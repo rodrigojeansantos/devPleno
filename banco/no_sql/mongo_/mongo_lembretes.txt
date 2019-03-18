@@ -15,6 +15,110 @@ Indice			----> Indice
 Junção			----> Documento Embutido
 Chave Estrangeira	----> Referencia
 Partição		----> Sharding
-************************************************
+************************************************************************************************
 Dentro de um documentos temos atributos que esses atributos
 podem ser um array que contem valores.
+
+
+			*********** Querys ***********
+
+IN:       db.users.find({email:{$in:["rodrigojeansantos@gmail.com", "rodrigo.santos72@fatec.sp.gov.br"]}})
+
+And e OR: db.users.find({validated: true ,$or :[ {occupationSlug : "arquiteto"}, {occupationSlug: "design-de-interiores"} ]});
+
+OR: db.estoque.find({$or: [ {"itensestoque.qtde": {$lt: 10}}, {"itensestoque.qtde": {$gt: 20}} ] })
+
+count:  db.users.count({occupationSlug : "arquiteto"});
+	db.users.aggregate([{$group : { _id : '$validated',count : {$sum : 1}} }]);
+	db.users.aggregate([{$group: {_id: '$occupationSlug','total': {$sum : 1}}}]);
+
+
+sub documentos:
+	db.users.aggregate( [ { $unwind : "$dataAuth" }] )
+
+************************************************************************************************
+			*********** Inserção ***********
+save: Se o id ja existir ele vai atualizar o banco, ou seja se eu coloco no 
+documento que quero salvar ele atualiza. Se não existir o ID ele insere normal.
+
+insert: vai salvar e pronto.
+
+			*********** Update ***********
+db.collection.update(<query>, <update>,{upsert: true})
+update: Passo a <query>, as propriedades daquela documento que vai sofrer a troca.
+E o upsert: true Se nenhum documento for encontrado naquela condição ele vai
+inserir aquele documento
+
+
+			*********** Find ***********
+Mostrar coluna especifica
+db.postagens.find({}, {titulo : true}).limit(3).sort({titulo: 1})
+
+Mostrar coluna especifica e tirar id
+db.postagens.find({}, {titulo : true, _id: false}).limit(3).sort({titulo: 1})
+
+Procurar valor menor que dentro de array
+db.estoque.find({categoria: 'roupas', "itensestoque.qtde":{$lt: 10} })
+
+			*********** Find One *********
+É muito performatico não tem algumas operações como cursor, formatação
+e manipulação de dados.
+
+db.postagens.findOne({titulo: 'Primeira Postagens'})
+
+			*********** Insert *********
+db.estoque.insert({
+    item: "ABC1",
+    detalhes: { modelo: "14Q3", fabricante: 'XYZ Empresa'},
+    itensestoque: [{tamanho: "S", qtde: 25},{tamanho: "M", qtde: 50}],
+    categoria: "roupa"
+})
+
+Usando uma variavel para inserir
+var meusDocumentos = 
+[
+    {item: 'ABC2', 
+     detalhes: {modelo: "14Q3", fabricante: "Mi Corporation"},
+     itensestoque: [{tamanho: "M", qtde: 50}],
+     categoria: "roupas"
+    },
+    {item: 'MNO2', 
+     detalhes: {modelo: "14Q3", fabricante: "ABC Empresa"},
+     itensestoque: [{tamanho: "S", qtde: 5}, {tamanho: "M", qtde: 5}],
+     categoria: "roupas"
+    },
+    {item: 'IJM2', 
+     detalhes: {modelo: "14Q2", fabricante: "M5 Comportation"},
+     itensestoque: [{tamanho: "S", qtde: 5}, {tamanho: "L", qtde: 1}],
+     categoria: "utensilios domesticos"
+    },    
+]
+
+db.estoque.insert(meusDocumentos);
+
+			*********** Insert Grandes Qtde *******
+Para inserir milhoes de uma ves utilizar o operador bulk
+
+var bulk = db.estoque.initializeUnorderedBulkOp();
+
+bulk.insert({
+    item: "Be10",
+    detalhes: {modelo: '14Q2', fabricante: 'XYZ Empresas'},
+    itensestoque: [{tamanho: "L", qtde: 5}],
+    categoria: "roupas"
+});
+
+bulk.insert({
+    item: "ZYT1",
+    detalhes: {modelo: '14Q1', fabricante: 'ABC Empresas'},
+    itensestoque: [{tamanho: "S", qtde: 5}, {tamanho: "M", qtde: 5}],
+    categoria: "utensilios domesticos"
+});
+
+bulk.execute();
+
+************************************************************************************************
+			*********** Operações *******
+Basta colocar count no final das coisas
+Count:  db.estoque.count();
+	db.estoque.find({categoria: 'roupas', "itensestoque.qtde":{$lt: 10} }).count()
