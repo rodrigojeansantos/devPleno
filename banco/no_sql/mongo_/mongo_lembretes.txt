@@ -117,6 +117,63 @@ bulk.insert({
 
 bulk.execute();
 
+
+			*********** Update *********
+db.estoque.update(
+ { item: "MNO2"},
+ {$set: {
+     categoria: "eletrônicos",
+     detalhes: { modelo: "14Q3", fabricante: "XYZ Empresas"}
+    },
+    $currentDate: { lastModified: true }
+ }
+)
+
+Acessar subPropriedades para Update em um documento
+db.estoque.update( { item: "ABC1"}, {$set: {"detalhes.modelo": "14Q2" }} )
+
+		
+		      *********** Update Vários Docs *********
+Atualuzar multi documentos, varios documentos.
+db.estoque.update(
+ { categoria: "roupas"},
+    { $set: { categoria: "eletrônicos" }, 
+    $currentDate: { lastModified: true } },
+    { multi: true }
+ }
+)
+
+Quando utilizo o set é para algumas propriedades. Para atualizar o documento todo
+faço como o exemplo abaixo.
+
+db.estoque.update( { item: "Be10" },
+ { item: "BE05", itensestoque: [{ tamanho: "S", qtde: 20}, { tamanho: "M", qtde: 10}],
+   categoria: "eletrônicos"
+ }
+)
+
+		      *********** Update Cadastrando *********
+Quando não encontra nenhum documento na regra do Find inclui um documento.
+db.estoque.update( { item: "TBD1" },
+ { item: "TBD1",
+   detalhes: { "modelo": "Estrutura de dados", grafica: "Kodac" },
+   itensestoque: [{ tamanho: "S", qtde: 20}, { tamanho: "M", qtde: 10}],
+   categoria: "biblioteca"
+ }, {upsert: true}
+)
+
+			*********** Remover *********
+Remover os documentos que atendam a um determinado predicado
+db.estoque.remove({ type: "comida" })
+
+Remover um único documento que atenda a um determinado predicado
+db.estoque.remove({ type: "comida" }, 1)
+
+Remover todos os documentos de uma collections
+db.estoque.remove({})
+
+Deletar a collection, ou seja, deixar de existir
+db.estoque.drop()
 ************************************************************************************************
 			*********** Operações *******
 Basta colocar count no final das coisas
