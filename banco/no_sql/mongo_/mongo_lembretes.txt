@@ -179,3 +179,8 @@ db.estoque.drop()
 Basta colocar count no final das coisas
 Count:  db.estoque.count();
 	db.estoque.find({categoria: 'roupas', "itensestoque.qtde":{$lt: 10} }).count()
+
+db.nuinvoices.aggregate([{$group: {_id: '$keyAccess','total': {$sum : 1}}}]).forEach(function(obj){
+// console.log(obj.total)  
+if(obj.total.value > 1){
+console.log(`${obj._id} ${obj.total.value}`)}})
