@@ -1,0 +1,77 @@
+db.invoices.find({status: 'analyze'})
+   .sort({_id:-1})
+   .forEach(function(it){
+       if(!it.serproData){
+           let a = db.temp.find({keyAccess: it.keyAccess}).toArray()
+           // console.log(a[0].serproData)
+           // console.log(it)
+           it.serproData = a[0].serproData
+           console.log(it)
+           // db.invoices.save(it)
+       }
+}
+
+
+
+////////////////////////////////////////////////////////////////
+
+db.invoices.find({status: 'analyze'})
+   .sort({_id:-1})
+   .forEach(function(it){
+       if(!it.serproData){
+           let a = db.temp.find({keyAccess: it.keyAccess}).toArray()
+           // console.log(a[0].serproData)
+           // console.log(it)
+           it.serproData = a[0].serproData
+           console.log(it)
+           db.invoices.save(it)
+       }
+}
+
+///////////////////////////////////////////////////////////////
+db.invoicesProd.find({})
+ .sort({_id:-1})
+ .forEach(function(it){
+    try {
+         let det = it.serpro.nfeProc.NFe.infNFe.det
+         let fieldEmitting = it.serpro.nfeProc.NFe.infNFe.emit
+         let fieldRecipient = it.serpro.nfeProc.NFe.infNFe.dest
+         let dateNew = it.serpro.nfeProc.NFe.infNFe.ide.dhEmi
+         
+         const produtos = det.map(item => {
+            const { prod } = item
+            return {
+                qtde: prod.qCom.value,
+                businessUnit: prod.uCom,
+                branch: prod.xProd
+            }
+        })
+    
+        let obj = {
+            keyAccess: it.keyAccess,
+            issueDate: new Date(dateNew),
+            totalInvoiceValue: '',
+            emitting: {
+                             cnpj: fieldEmitting.CNPJ.value,
+                             name: fieldEmitting.xNome,
+                stateRegistration: fieldEmitting.IE.value,
+                             city: fieldEmitting.enderEmit.xMun,
+                               uf: fieldEmitting.enderEmit.UF
+            },
+            recipient: {
+                             cnpj: fieldRecipient.CNPJ.value,
+                             name: fieldRecipient.xNome,
+                             city: fieldRecipient.enderDest.xMun,
+                               uf: fieldRecipient.enderDest.UF
+            },
+             productsServices: produtos
+            
+        }
+        //console.log(obj)
+        console.log(`OK:  ${it.keyAccess}`)
+      
+    } catch(e) {
+       console.log(`NOK: ${it.keyAccess}`)
+   }
+})
+       
