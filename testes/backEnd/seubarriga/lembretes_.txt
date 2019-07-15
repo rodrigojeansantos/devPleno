@@ -1,0 +1,14 @@
+***************************** Teste Back *****************************
+
+             *********** KnexJs ********
+Criando migrate users
+node_modules\.bin\knex migrate:make create_users --env test
+
+Up: progredir o bd
+Down: regredir o bd
+
+Rodar comandos em todas 
+node_modules\.bin\knex migrate:latest --env test
+
+Voltar Migração rollback
+node_modules\.bin\knex migrate:rollback --env test
