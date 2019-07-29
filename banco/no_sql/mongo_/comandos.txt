@@ -75,3 +75,101 @@ db.invoicesProd.find({})
    }
 })
        
+
+///////////////////////////////////////////////////////////////////////////////////////////////////////////
+
+db.invoices.find({status: 'approved'})
+// db.invoices.find({_id: ObjectId('5d30bbbe954c046db0111297')})
+ .sort({_id:-1})
+ // .limit(50)
+ .forEach(function(it){
+    try {
+        // console.log(it)
+         let id = it._id
+         let det = it.serproData.nfeProc.NFe.infNFe.det
+         let fieldEmitting = it.serproData.nfeProc.NFe.infNFe.emit
+         let fieldRecipient = it.serproData.nfeProc.NFe.infNFe.dest
+         let dateNew = it.serproData.nfeProc.NFe.infNFe.ide.dhEmi
+         let tot = it.serproData.nfeProc.NFe.infNFe.total.ICMSTot.vNF
+         let rec_cpnpj_cpf =  ''
+         let emi_cpnpj_cpf =  ''
+         
+         if(fieldRecipient.CNPJ){
+            if(fieldRecipient.CNPJ.value){ rec_cpnpj_cpf = fieldRecipient.CNPJ.value }else{ rec_cpnpj_cpf = fieldRecipient.CNPJ }
+         }else{
+             rec_cpnpj_cpf = fieldRecipient.CPF.value
+         }
+
+
+         if(fieldEmitting.CNPJ){
+            if(fieldEmitting.CNPJ.value){ emi_cpnpj_cpf = fieldEmitting.CNPJ.value }else{ emi_cpnpj_cpf = fieldEmitting.CNPJ }
+         }else{
+             emi_cpnpj_cpf = fieldEmitting.CPF.value
+         }
+         // console.log(rec_cpnpj_cpf)
+         
+         let trans = db.transactions.find({invoiceId: ObjectId(id)}).toArray()
+         // console.log(trans[0])
+            let lPattern = null
+            let lLine = null
+            let lStatus
+         let produtos = det.map(item => {
+            const { prod } = item
+            let detProd = trans.filter(a => a.description == prod.xProd)
+
+            // console.log(prod.xProd)
+            // console.log(detProd[0])
+            if(detProd.length > 0){
+                lLine = detProd[0].line
+                lPattern = detProd[0].pattern
+                lStatus =  detProd[0].status
+            }
+            
+            return {
+                qtde: prod.qCom.value || null, // Qtd
+                valueUnit: prod.vUnCom.value || null, // valor unitario
+                patternUnit: prod.uCom || null, // unidade comercial (CH ou M2... etc)
+                valueTotalDiscount: prod.vDesc || null, // valor total do desconto
+                valueTotalFreight: prod.vFrete || null, // valor total do frete
+                line: lLine || null,
+                pattern: lPattern || null,
+                status: lStatus || null,
+                originalDescription: prod.xProd || null
+            }
+        })
+    
+    // console.log(fieldRecipient.CPF.value)
+    
+        let obj = {
+            _id: ObjectId(id),
+            keyAccess: it.keyAccess,
+            issueDate: new Date(dateNew),
+            totalInvoiceValue: '',
+            emitting: {
+                cnpj_cpf: emi_cpnpj_cpf || null,
+                name: fieldEmitting.xNome,
+                city: fieldEmitting.enderEmit.xMun,
+                uf: fieldEmitting.enderEmit.UF,
+                stateRegistration: fieldEmitting.IE.value,
+            },
+            recipient: {
+                cnpj_cpf: rec_cpnpj_cpf || null,
+                name: fieldRecipient.xNome,
+                city: fieldRecipient.enderDest.xMun,
+                uf: fieldRecipient.enderDest.UF
+            },
+             productsServices: produtos
+            
+        }
+        // console.log(obj)
+        // console.log(`OK:  ${it.keyAccess}`)
+        
+        db.nfAnalytics.save(obj)
+        
+      
+    } catch(e) {
+        console.log(e)
+       // console.log(`NOK: ${it.keyAccess}`)
+   }
+})
+      
