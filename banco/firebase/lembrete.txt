@@ -1,0 +1,26 @@
+********************************* FireBase Estudos **********************************
+
+			*********** Entendendo ***********
+É um dataBase As a Service (Baas)
+É otimo para chats
+RealTimeDataBase é no formato Json
+Ele é em tempo real.
+
+Real time DataBase: Para banco mais simples
+CloudFireStore: Bd mais complexos.
+Autenticação: Para login e criação de usuário
+Analicts: Analise de usuário e aplicações devices.
+CloudFunctions: Aplicações Serverlees
+Testes: Para performance
+CloudMessage: Push notification
+Integração sobre produtos da google.
+
+			*********** Console ***********
+https://firebase.google.com/
+clicar em console no canto direito da tela
+
+			*********** Config Projeto ***********
+Criar app; clicar no icone da web; 
+
+
+************************************************************************************************
