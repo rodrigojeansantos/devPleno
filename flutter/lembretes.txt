@@ -1,0 +1,18 @@
+********************************* Flutter Estudos **********************************
+
+			*********** Dart ***********
+Dart é orientado a Objeto.
+
+			*********** Entendendo ***********
+
+Mesmo codigo para Android e IOS
+widgets: são do tipo linha e coluna. Tudo em Flutter é um widgets.
+Fast reload: Altera em tempo real ao clicar no raio.
+compila para nativo.
+
+mapear variavel de ambiente
+D:\flutter\src\flutter\bin
+
+			*********** Comandos ***********
+flutter doctor: informa se esta faltando algo para iniciar o desenvolver
+flutter doctor --android-licenses

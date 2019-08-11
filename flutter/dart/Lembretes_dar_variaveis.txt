@@ -1,0 +1,74 @@
+********************************* Dart Estudos **********************************
+
+			*********** Tipos De Variaveis ***********
+void main() {
+  String nome = 'Loja do BJ';
+  int bananas = 5;
+  double preco = 10.5;
+  var teste = 1;
+  teste = 10;
+  
+  dynamic souQualquerTipo = "Sou um string";
+  print('Sou um teste $bananas e o preco de tudo isso é $teste');
+  
+  print(souQualquerTipo);
+  souQualquerTipo = 100;
+  print(souQualquerTipo);  
+}
+
+			*********** Operações Aritmetricas ***********
+void main() {
+  double num1 = 10.0;
+  double num2 = 20.0;
+  
+  dynamic res = num1 + num2;
+  print(res);
+  
+  res = num1 * num2;
+  print(res);
+  
+  res = (num1 * num2) - 30.0;
+  print(res);
+  
+  //num1 = num1 + 15;
+  //OU
+  num1 += 15;
+  print(num1);
+}
+
+
+			*********** Operações Lógicas ***********
+void main() {
+// Comparadores  
+  // >   maior
+  // >=  maior ou igual
+  // <   menor
+  // <=  menor ou igual
+  // ==  igual
+  // !=  diferente
+  
+  bool testecomp = (10 > 20) ;
+  print('comp: $testecomp');
+  
+ // Operador Or
+  // true  true   -> true
+  // true  false  -> true
+  // false true   -> true
+  // false false  -> false
+  
+  bool testeOr = (true || false);
+  print('OR: $testeOr');
+  
+  
+ // Operador AND
+  // true  true   -> true
+  // true  false  -> false
+  // false true   -> false
+  // false false  -> false
+  
+  bool testeAnd = (true && false);
+  print('AND: $testeAnd');  
+  
+  bool complexa = (10 > 20) && ((30 < 20) || testeAnd);
+  print(complexa);
+}
