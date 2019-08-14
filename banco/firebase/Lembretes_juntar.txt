@@ -1,0 +1,11 @@
+			*********** remove ***********
+ref.child(id).remove().then // Lembrar de remover ele da dom
+// E remove todos os nós dentro do nó envolvido.
+
+Outra maneira de remover
+ref.child(id).set(null).then: Exclui o nó do firebase
+
+			*********** Atualizar ***********
+.set(): Pode ser acessado diretament o obj para atualizar
+// Ou pode passar o objeto completo e atualizar-lo
+ref.child(id+ '/curtidas').set(countNumber).then
