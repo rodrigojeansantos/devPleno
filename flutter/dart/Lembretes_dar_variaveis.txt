@@ -72,3 +72,156 @@ void main() {
   bool complexa = (10 > 20) && ((30 < 20) || testeAnd);
   print(complexa);
 }
+
+			*********** Tomando decisões ***********
+void main() {
+  double nota = 10.0;
+  if(nota < 5.0){ print('Exame'); } else if (nota == 10.0){ print('Sucesso total');} 
+  else{ print('Sucesso');} 
+  
+  bool aprovado = true;
+  String info;
+  
+  info = aprovado ? 'Aprovado' : 'Reprovado';
+  String nome;
+  String info2 = nome ?? 'Não informado';
+  
+  print(info);
+  print(info2);
+  print('Fim');
+  
+}
+
+			*********** Tomando decisões 2 ***********
+void main() {
+  String ling = 'Dart';
+  
+  switch(ling){
+    case 'Dart': print('Dart!!!!'); break;
+    case 'Java': print('Putzzz Java....'); break;
+    case 'Swift': print('Putzzz Swift....'); break;
+    default: print('Outra Qualquer....');
+  }
+  
+}
+
+			*********** Loops ***********
+void main() {
+  // qtde definico
+  for (int i = 0; i <= 5; i++){ print(i);}
+  for (int i = 5; i >= 1; i-= 1){ print(i);}
+  
+  // qtde indefinido
+  int j=0;
+  while(j <= 5){ print(j); j++; }  
+}
+
+			*********** Funções ***********
+void main() {
+  printIntro();
+  calcSoma(10.0, 15.0);
+  double res = calcMult(10.0, 15.0);
+  print(res);
+  print(caclAreaCirculo(5.0));
+}
+
+void printIntro(){ print('Seja bem vindo'); print('Escolha sua opção');}
+void calcSoma(double a, double b){ double res = a + b; print(res);}
+double calcMult(double a, double b){ double res = a * b; return res;}
+double caclAreaCirculo(double raio) => 3.14 * raio * raio;
+
+			*********** Parametros Opcionais ***********
+void main() {
+  criarBotao('Botão Sair', botaoCriado, cor: "Cinza");
+  criarBotao('Criando camera....', (){ print('Botão criado por fun anonimo');});
+}
+void botaoCriado(){ print('Botão Criado'); }
+
+void criarBotao(String texto, Function criadoFunc, { String cor, double largura } ){
+  print(texto); print(cor ?? "Preto"); 
+  print(largura ?? 10.0);
+  criadoFunc();
+}
+
+			*********** Escopo de Variveis ***********
+double res;
+void main() { soma(10.0, 20.0); print(res); }
+void soma(double a, double b){  res = a + b; }
+
+			*********** Classes Atributos, Metodos e Objs ***********
+
+class Pessoa {
+  String nome;
+  int idade;
+  double altura;  
+  void dormir(){ print('${nome} está dormindo'); }
+  void aniver(){idade++;}
+}
+
+void main() { 
+  Pessoa pessoa1 = Pessoa();
+  pessoa1.nome = 'RodrigoBJ';
+  pessoa1.idade = 30;
+  pessoa1.altura = 1.96;
+  
+  Pessoa pessoa2 = Pessoa();
+  pessoa2.nome = 'Jean Santos';
+  pessoa2.idade = 29;
+  pessoa2.altura = 1.90;
+  
+  print(pessoa1.nome);
+  print(pessoa2.nome);
+  
+  print(pessoa1.idade);
+  pessoa1.aniver();
+  print(pessoa1.idade);
+  pessoa2.dormir();
+}
+
+			*********** Construtor ***********
+class Pessoa {
+  String nome;
+  int idade;
+  double altura;  
+  Pessoa(this.nome, this.idade, this.altura);
+
+  //Construtor namedConstructor
+  Pessoa.nascer(this.nome, this.altura){ idade = 0; print('$nome nasceu') ; dormir(); }  
+  void dormir(){ print('${nome} está dormindo'); }
+  void aniver(){idade++;}
+}
+
+void main() { 
+  Pessoa nene = Pessoa.nascer('Rod', 0.30);    
+  print(nene.idade);
+}
+
+			*********** Getters e Setters ***********
+class Pessoa {
+  String nome;
+  int _idade; // privado
+  double _altura;
+  
+  Pessoa(this.nome, this._idade, this._altura);
+  
+  //Construtor namedConstructor
+  Pessoa.nascer(this.nome, this._altura){ _idade = 0; print('$nome nasceu') ; dormir(); }
+  
+  void dormir(){ print('${nome} está dormindo'); }
+  void aniver(){_idade++;}  
+  // int get idade{ return _idade;}
+  // double get altura{ return _altura;}
+  int get idade => _idade;
+  double get altura => _altura;
+  set altura(double altura){ if(altura > 0.0 && altura < 3.0){ _altura = altura; } }
+}
+
+void main() { 
+  Pessoa nene = Pessoa.nascer('Rod', 0.30);    
+  print(nene.idade);
+  
+  Pessoa pessoa1 = Pessoa('RodrigoBJ',30, 1.80);
+  print(pessoa1.idade);
+  pessoa1.altura = 1.96;
+  print(pessoa1.altura);
+}
