@@ -66,6 +66,14 @@ e manipulação de dados.
 
 db.postagens.findOne({titulo: 'Primeira Postagens'})
 
+			*********** Agrupar ***********
+db.transactions.aggregate(
+[
+    { $match : { status : 'approved' } },
+    { $group : { _id : '$description' ,
+    count : {$sum : 1}} }
+]).limit(5000)
+
 			*********** Insert *********
 db.estoque.insert({
     item: "ABC1",
