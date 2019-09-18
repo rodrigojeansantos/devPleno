@@ -9,3 +9,17 @@ ref.child(id).set(null).then: Exclui o nó do firebase
 .set(): Pode ser acessado diretament o obj para atualizar
 // Ou pode passar o objeto completo e atualizar-lo
 ref.child(id+ '/curtidas').set(countNumber).then
+
+			*********** Listenner no DB ***********
+// Ele pega todo o objeto, bom para historico
+ref.on('value', snapshot => {}) // quando alguma alteração é feita os dados
+são atualizados.
+
+// Adiciona nó por nó
+ref.on('child_added', snapshot => {})
+
+//Nó antes do principal no caso o filho
+ref.on('child_added', (snapshot, uid) => {})
+
+// Nó filho da referencia for excluido
+ref.on('child_removed', snapshot => {})
