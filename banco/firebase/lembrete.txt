@@ -22,5 +22,13 @@ clicar em console no canto direito da tela
 			*********** Config Projeto ***********
 Criar app; clicar no icone da web; 
 
+			*********** Metodos ***********
+ref(''): Cria dados na url informada.
+child: Acessa o nó filho passado por parametro.
+push: Diferente do set, ja insere os dados e coloca o id baseado em data.
+once(): retorna os dados lidos de uma url
+snapshot: Objeto retornado pela leitura
 
-************************************************************************************************
+			*********** Segurança ***********
+
+*********************************************************************************************
