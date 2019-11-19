@@ -202,3 +202,17 @@ db.nuinvoices.aggregate([{$group: {_id: '$keyAccess','total': {$sum : 1}}}]).for
 // console.log(obj.total)  
 if(obj.total.value > 1){
 console.log(`${obj._id} ${obj.total.value}`)}})
+
+// Usuarios vom validated igual a false e que tem mais de um cadastro no BD
+ db.users.aggregate([
+     { $match : { validated : false } },
+     { $group: { 
+        _id: '$email',
+        count: {'$sum': 1}, 
+        }
+     },
+     { $match: {
+        count: {'$gt': 1}
+        }
+     }
+])
