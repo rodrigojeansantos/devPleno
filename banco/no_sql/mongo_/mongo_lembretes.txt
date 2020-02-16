@@ -192,6 +192,15 @@ db.estoque.remove({})
 
 Deletar a collection, ou seja, deixar de existir
 db.estoque.drop()
+
+
+			*********** Criando view *******
+
+db.createView ( "contents_vw", "contents",[ 
+{ $lookup:{ from: "quizzes", localField: "_id", foreignField: "contentId", as: "quizes"  }},
+//{ $project: { "inventory_docs._id": 0, "inventory_docs.sku": 0 } }
+])
+
 ************************************************************************************************
 			*********** Operações *******
 Basta colocar count no final das coisas
