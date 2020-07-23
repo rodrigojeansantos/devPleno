@@ -1,0 +1,27 @@
+db.analyticals_v4.find({})
+   .projection({})
+   .sort({_id:-1})
+   //.limit(2)
+   .forEach((it) =>{
+       try {
+           
+           let ivcId = it.invoiceId
+           let ivsDesc = it.pdtDescription
+           let data = db.invoices.find({_id: ObjectId(ivcId)}).toArray()
+           let prd = data[0].serproData.nfeProc.NFe.infNFe.det
+           
+           prd.forEach((elem) =>{
+               
+               if(elem.prod.xProd === ivsDesc){
+                   let prodV = elem.prod.vProd
+                   it.pdtCommercialTotalValue = prodV
+                    console.log(it._id, prodV)
+                    
+                    // db.analyticals_v4.save(it)
+               }
+               
+           })
+           
+           
+       } catch(e) { console.log(e) }
+   })
