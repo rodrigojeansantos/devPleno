@@ -3,7 +3,7 @@ const arr = new Array(50)
 //Preencher array todo com lol
 //arr.fill('lol')
 //console.log(arr)
-
+    
 //Posso definir o indice 
 arr.fill('lol', 3, 6)
 console.log(arr)
